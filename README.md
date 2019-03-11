@@ -7,4 +7,4 @@ This repository contains the code and weights from the best-performing model as 
 
 The classifier can identify 36 species of planktonic foraminifera with a top-1 accuracy of 87.4% and a top-3 accuracy of 97.7%. The training set used consisted of 27,737 images from the Yale Peabody Museum and Natural History Museum, London collections.
 
-Training images and a taxonomic training module can be found at [Endless Forams](endlessforams.org).
+Training images and a taxonomic training module can be found at [Endless Forams](http://www.endlessforams.org).
