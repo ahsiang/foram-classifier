@@ -43,6 +43,8 @@ from sklearn.metrics import classification_report, confusion_matrix
 #   predictions.pkl     pickle file containing predictions by model for all validation images
 #   confusion.pkl       pickle file containing raw data to generate confusion matrix
 #   labels.pkl          pickle file containing all class labels
+#
+# Note: Weights files can be downloaded at: https://github.com/fchollet/deep-learning-models/releases/
 
 # Get information on available GPUs in system
 k.tensorflow_backend._get_available_gpus()
