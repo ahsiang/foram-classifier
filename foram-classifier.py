@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding = utf-8
 
 import os
 import pickle
@@ -63,7 +64,7 @@ base_dir = ''
 output_dir = ''
 
 # Analysis number (or any other run identifier)
-analysis_id = '23'
+analysis_id = ''
 
 ################################################# RUN PARAMETERS #################################################
 #   cnn                     convolutional neural network to use (options: 'vgg16', 'inceptionv3', 'densenet121') #
@@ -110,7 +111,7 @@ if num_validation_samples % batch_size == 0:
 else:
     validation_steps = num_validation_samples / batch_size + 1
 
-if num_train_samples % batch_size = 0:
+if num_train_samples % batch_size == 0:
     train_steps = num_train_samples / batch_size
 else:
     train_steps = num_train_samples / batch_size + 1
