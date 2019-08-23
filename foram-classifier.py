@@ -1,10 +1,11 @@
 #!/usr/bin/python
-# coding = utf-8
+#coding=utf-8
 
 import os
 import pickle
 import keras
 import functools
+import numpy as np
 
 from keras import applications
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
@@ -243,7 +244,7 @@ with open(os.path.join(output_dir,'analysis_{:s}_history.pkl'.format(analysis_id
     pickle.dump(history.history,f)
 
 # Save confusion matrix, classification report, and label map
-Y_pred = model.predict_generator(validation_generator, validation_steps)
+Y_pred = model_final.predict_generator(validation_generator)
 y_pred = np.argmax(Y_pred, axis=1)
 confusion = confusion_matrix(validation_generator.classes, y_pred)
 label_map = (validation_generator.class_indices)
