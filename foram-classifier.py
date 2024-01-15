@@ -108,14 +108,14 @@ validation_data_dir = os.path.join(base_dir,'validation')
 # through one forward propogation. Note that if modulo(number of samples / batch size) != 0,
 # an extra step is required to pass the remainder images through the network
 if num_validation_samples % batch_size == 0:
-    validation_steps = num_validation_samples / batch_size
+    validation_steps = num_validation_samples // batch_size
 else:
-    validation_steps = num_validation_samples / batch_size + 1
+    validation_steps = num_validation_samples // batch_size + 1
 
 if num_train_samples % batch_size == 0:
-    train_steps = num_train_samples / batch_size
+    train_steps = num_train_samples // batch_size
 else:
-    train_steps = num_train_samples / batch_size + 1
+    train_steps = num_train_samples // batch_size + 1
 
 # Set weights and initialize models depending on chosen CNN
 # include_top is False because we want to add change the size of the final fully-connected
@@ -196,6 +196,7 @@ train_generator = train_datagen.flow_from_directory(
 validation_generator = test_datagen.flow_from_directory(
         validation_data_dir,
         target_size = (img_height, img_width),
+	batch_size = batch_size,
         class_mode = "categorical")
 
 # Create output directory if it doesn't exist
@@ -244,7 +245,7 @@ with open(os.path.join(output_dir,'analysis_{:s}_history.pkl'.format(analysis_id
     pickle.dump(history.history,f)
 
 # Save confusion matrix, classification report, and label map
-Y_pred = model_final.predict_generator(validation_generator)
+Y_pred = model_final.predict_generator(validation_generator, steps=validation_steps)
 y_pred = np.argmax(Y_pred, axis=1)
 confusion = confusion_matrix(validation_generator.classes, y_pred)
 label_map = (validation_generator.class_indices)
